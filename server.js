@@ -1,10 +1,12 @@
 const express = require('express');
 const app = express();
+const cors = require("cors");
 
 app.use(express.json({extended: false}))
+app.use(cors())
 
 
-app.get('/getme', (req, res) => {
+app.get('/getme', (req, res, next) => {
   res.send({message: `${req.url} path`})
 });
 
@@ -21,8 +23,8 @@ app.get("/fuckup/surprise",(req,res)=>{
 
 })
 
-app.post('/postme', (req, res) => {
-  res.send({})
+app.post('/postme', (req, res, next) => {
+  res.json({message: "POST route called"})
 })
 
 
